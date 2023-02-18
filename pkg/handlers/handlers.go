@@ -47,3 +47,10 @@ func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 		StringMap: stringMap,
 	})
 }
+
+//Generals Suite Handler
+
+func (m *Repository) GeneralsRoom(w http.ResponseWriter, r *http.Request) {
+
+	render.RenderTemplate(w, "general's-suite.page.tmpl", &models.TemplateData{})
+}
