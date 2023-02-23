@@ -3,8 +3,9 @@ package main
 import (
 	"bookings/pkg/config"
 	"bookings/pkg/handlers"
-	"github.com/go-chi/chi/v5"
 	"net/http"
+
+	"github.com/go-chi/chi/v5"
 )
 
 func routes(app *config.AppConfig) http.Handler {
@@ -18,7 +19,11 @@ func routes(app *config.AppConfig) http.Handler {
 	mux.Use(SessionLoad)
 	mux.Get("/", handlers.Repo.Home)
 	mux.Get("/about", handlers.Repo.About)
-	mux.Get("/rooms/general's-suite", handlers.Repo.GeneralsRoom)
+	mux.Get("/make-reservation", handlers.Repo.Reservation)
+	mux.Get("/majors-suite", handlers.Repo.Majors)
+	mux.Get("/generals-quarters", handlers.Repo.Generals)
+	mux.Get("/search-availability", handlers.Repo.Availabilty)
+	mux.Get("/contact", handlers.Repo.Contact)
 
 	//Create a file server for static files
 	fileServer := http.FileServer(http.Dir("./static/"))
