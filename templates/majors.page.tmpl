@@ -6,7 +6,7 @@
 
         <div class="row">
             <div class="col">
-                <img src="static/images/marjors-suite.png"
+                <img src="/static/images/marjors-suite.png"
                      class="img-fluid img-thumbnail mx-auto d-block room-image" alt="room image">
             </div>
         </div>
@@ -41,8 +41,6 @@
 
             </div>
         </div>
-        
-
 
 
     </div>
@@ -50,10 +48,10 @@
 {{end}}
 
 {{define "js"}}
-<script>
+    <script>
 
-            document.getElementById("check-availability-button").addEventListener("click", function () {
-                let html = `
+        document.getElementById("check-availability-button").addEventListener("click", function () {
+            let html = `
                 <form id="check-availability-form" action="" method="post" novalidate class="needs-validation">
                     <div class="form-row">
                         <div class="col">
@@ -70,11 +68,11 @@
                     </div>
                 </form>
                 `;
-                attention.custom({
-                    title: 'Choose your dates',
-                    msg: html,
-                });
-            })
-            
-</script>
+            attention.custom({
+                title: 'Choose your dates',
+                msg: html,
+            });
+        })
+
+    </script>
 {{end}}

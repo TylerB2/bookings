@@ -42,8 +42,6 @@
 
             </div>
         </div>
-        
-
 
 
     </div>
@@ -53,10 +51,10 @@
 {{end}}
 
 {{define "js"}}
-<script>
+    <script>
 
-            document.getElementById("check-availability-button").addEventListener("click", function () {
-                let html = `
+        document.getElementById("check-availability-button").addEventListener("click", function () {
+            let html = `
                 <form id="check-availability-form" action="" method="post" novalidate class="needs-validation">
                     <div class="form-row">
                         <div class="col">
@@ -73,11 +71,46 @@
                     </div>
                 </form>
                 `;
-                attention.custom({
-                    title: 'Choose your dates',
-                    msg: html,
-                });
-            })
-            
-</script>
+            attention.custom({
+                title: 'Choose your dates',
+                msg: html,
+
+                willOpen: () => {
+                    const elem = document.getElementById("reservation-dates-modal");
+                    const rp = new DateRangePicker(elem, {
+                        format: 'yyyy-mm-dd',
+                        showOnFocus: true,
+                    })
+                },
+
+                didOpen: () => {
+                    document.getElementById("start").removeAttribute("disabled");
+                    document.getElementById("end").removeAttribute("disabled");
+                },
+
+
+                callback : function (result) {
+                    console.log("Called")
+
+                    //peform an AJAX call
+                    let form = document.getElementById("check-availability-form");
+                    let formData = new FormData(form); //gets the data from form to javascript format
+                    formData.append("csrf_token", "{{.CSRFToken}}"); //Fetches data from go Code
+
+                    fetch('/search-availability-json', {
+                        method: "post",
+                        body: formData,
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data)
+                        })
+                }
+            });
+        })
+
+    // SENDING AND AJAX REQUEST
+
+
+    </script>
 {{end}}

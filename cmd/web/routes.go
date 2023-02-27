@@ -1,8 +1,8 @@
 package main
 
 import (
-	"bookings/pkg/config"
-	"bookings/pkg/handlers"
+	"bookings/internal/config"
+	"bookings/internal/handlers"
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
@@ -22,7 +22,9 @@ func routes(app *config.AppConfig) http.Handler {
 	mux.Get("/make-reservation", handlers.Repo.Reservation)
 	mux.Get("/majors-suite", handlers.Repo.Majors)
 	mux.Get("/generals-quarters", handlers.Repo.Generals)
-	mux.Get("/search-availability", handlers.Repo.Availabilty)
+	mux.Get("/search-availability", handlers.Repo.Availability)
+	mux.Post("/search-availability", handlers.Repo.PostAvailability)
+	mux.Post("/search-availability-json", handlers.Repo.AvailabilityJson)
 	mux.Get("/contact", handlers.Repo.Contact)
 
 	//Create a file server for static files
