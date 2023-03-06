@@ -3,7 +3,9 @@ package main
 import (
 	"bookings/internal/config"
 	"bookings/internal/handlers"
+	"bookings/internal/models"
 	"bookings/internal/render"
+	"encoding/gob"
 	"fmt"
 	"github.com/alexedwards/scs/v2"
 	"log"
@@ -17,6 +19,8 @@ var app config.AppConfig
 var session *scs.SessionManager
 
 func main() {
+	//What am I storing in the sessions
+	gob.Register(models.Reservation{})
 
 	//Setting up sessions
 	app.InProduction = false
