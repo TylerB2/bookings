@@ -7,10 +7,11 @@ import (
 	"bookings/internal/render"
 	"encoding/gob"
 	"fmt"
-	"github.com/alexedwards/scs/v2"
 	"log"
 	"net/http"
 	"time"
+
+	"github.com/alexedwards/scs/v2"
 )
 
 const portNumber = ":8082"
@@ -19,6 +20,24 @@ var app config.AppConfig
 var session *scs.SessionManager
 
 func main() {
+	err := run()
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println("Starting application on port ", portNumber)
+
+	srv := &http.Server{
+		Addr:    portNumber,
+		Handler: routes(&app),
+	}
+
+	err = srv.ListenAndServe()
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+}
+
+func run() error {
 	//What am I storing in the sessions
 	gob.Register(models.Reservation{})
 
@@ -34,7 +53,8 @@ func main() {
 
 	tc, err := render.CreateTemplateCache()
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("cannot create template cache")
+		return err
 	}
 	app.TemplateCache = tc
 	app.UseCache = false
@@ -43,15 +63,5 @@ func main() {
 	handlers.NewHandler(repo)
 	render.NewTemplates(&app)
 
-	fmt.Println("Starting application on port ", portNumber)
-
-	srv := &http.Server{
-		Addr:    portNumber,
-		Handler: routes(&app),
-	}
-
-	err = srv.ListenAndServe()
-	if err != nil {
-		fmt.Println(err.Error())
-	}
+	return nil
 }
