@@ -3,12 +3,14 @@ package main
 import (
 	"bookings/internal/config"
 	"bookings/internal/handlers"
+	"bookings/internal/helpers"
 	"bookings/internal/models"
 	"bookings/internal/render"
 	"encoding/gob"
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/alexedwards/scs/v2"
@@ -18,6 +20,8 @@ const portNumber = ":8082"
 
 var app config.AppConfig
 var session *scs.SessionManager
+var infoLog *log.Logger
+var errorLog *log.Logger
 
 func main() {
 	err := run()
@@ -43,6 +47,12 @@ func run() error {
 
 	//Setting up sessions
 	app.InProduction = false
+
+	infoLog = log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
+	app.InfoLog = infoLog
+
+	errorLog = log.New(os.Stdout, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
+	app.ErrorLog = errorLog
 	session = scs.New()
 
 	session.Lifetime = 24 * time.Hour
@@ -62,6 +72,7 @@ func run() error {
 	repo := handlers.NewRepo(&app)
 	handlers.NewHandler(repo)
 	render.NewTemplates(&app)
+	helpers.NewHelpers(&app)
 
 	return nil
 }
