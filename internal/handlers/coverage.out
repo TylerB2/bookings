@@ -1,0 +1,22 @@
+mode: set
+bookings/internal/handlers/handlers.go:23.47,27.2 1 1
+bookings/internal/handlers/handlers.go:30.32,32.2 1 1
+bookings/internal/handlers/handlers.go:35.67,39.2 3 1
+bookings/internal/handlers/handlers.go:42.68,53.2 5 1
+bookings/internal/handlers/handlers.go:57.71,60.2 1 1
+bookings/internal/handlers/handlers.go:63.69,66.2 1 1
+bookings/internal/handlers/handlers.go:69.74,78.2 4 1
+bookings/internal/handlers/handlers.go:81.78,84.16 2 1
+bookings/internal/handlers/handlers.go:84.16,87.3 2 0
+bookings/internal/handlers/handlers.go:89.2,101.19 6 1
+bookings/internal/handlers/handlers.go:101.19,109.3 4 0
+bookings/internal/handlers/handlers.go:112.2,114.66 2 1
+bookings/internal/handlers/handlers.go:118.75,121.2 1 1
+bookings/internal/handlers/handlers.go:124.79,132.2 3 1
+bookings/internal/handlers/handlers.go:140.79,147.16 3 0
+bookings/internal/handlers/handlers.go:147.16,149.3 1 0
+bookings/internal/handlers/handlers.go:150.2,153.14 3 0
+bookings/internal/handlers/handlers.go:158.70,161.2 1 1
+bookings/internal/handlers/handlers.go:164.81,168.9 2 1
+bookings/internal/handlers/handlers.go:168.9,173.3 4 1
+bookings/internal/handlers/handlers.go:175.2,180.4 4 0

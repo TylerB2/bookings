@@ -2,10 +2,11 @@ package forms
 
 import (
 	"fmt"
-	"github.com/asaskevich/govalidator"
-	"net/http"
+
 	"net/url"
 	"strings"
+
+	"github.com/asaskevich/govalidator"
 )
 
 // Creates a custom form struct
@@ -23,8 +24,8 @@ func New(data url.Values) *Form {
 }
 
 // Checks if Field is not empty
-func (f *Form) Has(field string, r *http.Request) bool {
-	x := r.Form.Get(field)
+func (f *Form) Has(field string) bool {
+	x := f.Get(field)
 	if x == "" {
 		f.Errors.Add(field, "This field cannot be blank")
 		return false
@@ -50,8 +51,8 @@ func (f *Form) Required(fields ...string) {
 }
 
 // Checks for string minimum length
-func (f *Form) MinLength(field string, length int, r *http.Request) bool {
-	x := r.Form.Get(field)
+func (f *Form) MinLength(field string, length int) bool {
+	x := f.Get(field)
 	if len(x) < length {
 		f.Errors.Add(field, fmt.Sprintf("This field must be atleast %d characters long", length))
 		return false
