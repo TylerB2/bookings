@@ -7,3 +7,4 @@ This is the repository for my bookings and reservations project
 - Uses [alex edwards](https://github.com/alexedwards/scs) SCS session management 
 - Uses [nosurf](https://github.com/justinas/nosurf)
 - Uses [govalidator](https://github.com/asaskevich/govalidator)
+- Uses [soda](https://gobuffalo.io/documentation/database/pop/) for database migrations
