@@ -8,3 +8,4 @@ This is the repository for my bookings and reservations project
 - Uses [nosurf](https://github.com/justinas/nosurf)
 - Uses [govalidator](https://github.com/asaskevich/govalidator)
 - Uses [soda](https://gobuffalo.io/documentation/database/pop/) for database migrations
+- Uses [jackc/pgx](https://github.com/jackc/pgx) PostgreSQL
